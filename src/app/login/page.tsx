@@ -18,7 +18,7 @@ export default function LoginPage() {
     if (error) {
       alert(error.message);
     } else {
-      router.push('/dashboard');
+      router.push('/users');
       router.refresh(); // ✅ 쿠키 반영된 후 서버 측 렌더링을 강제로 새로고침
     }
   };

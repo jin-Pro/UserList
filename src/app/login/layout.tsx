@@ -9,7 +9,7 @@ const Layout = async ({ children }: PropsWithChildren) => {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (user) redirect('/dashboard');
+  if (user) redirect('/users');
   return children;
 };
 

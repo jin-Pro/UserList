@@ -15,7 +15,9 @@ export default function RegisterPage() {
   });
 
   const handleRegister = async () => {
-    const { error } = await createClient().auth.signUp(loginInfo);
+    const supabase = createClient();
+    const { error } = await supabase.auth.signUp(loginInfo);
+    const { error: err } = await supabase.from('User').insert([loginInfo]);
     if (error) {
       alert(error.message);
     } else {

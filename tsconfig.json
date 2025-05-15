@@ -24,6 +24,11 @@
       "@component/*": ["./src/app/_common/Component/*"]
     }
   },
-  "include": ["src/**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
