@@ -8,6 +8,10 @@ const nextConfig = {
     config.resolve.alias['@lib'] = path.resolve(__dirname, 'lib');
     return config;
   },
+  experimental: {
+    serverActions: true,
+  },
+  middleware: true,
 };
 
 module.exports = nextConfig;
