@@ -72,32 +72,6 @@ export type Database = {
           Score?: number
           userId?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "Post_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "User"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      User: {
-        Row: {
-          created_at: string
-          id: string
-          password: string
-        }
-        Insert: {
-          created_at?: string
-          id: string
-          password: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          password?: string
-        }
         Relationships: []
       }
     }
