@@ -6,17 +6,15 @@ import { createClient } from '@lib/supabase/client';
 import AuthContainer from '@component/AuthContainer';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const router = useRouter();
+  const [loginInfo, setLoginInfo] = useState({
+    email: '',
+    password: '',
+  });
 
-  const supabase = createClient();
   const handleLogin = async () => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    console.log('error', error);
+    const { error } = await createClient().auth.signInWithPassword(loginInfo);
+
     if (error) {
       alert(error.message);
     } else {
@@ -36,15 +34,19 @@ export default function LoginPage() {
       >
         <input
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={loginInfo.email}
+          onChange={(e) =>
+            setLoginInfo((prev) => ({ ...prev, email: e.target.value }))
+          }
           placeholder="이메일"
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={loginInfo.password}
+          onChange={(e) =>
+            setLoginInfo((prev) => ({ ...prev, password: e.target.value }))
+          }
           placeholder="비밀번호"
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
