@@ -8,10 +8,12 @@ export default async function WritePage({
   params: { id: string };
 }) {
   const { id } = await params;
-  const supabase = await createClient();
 
-  const { data: user } = await supabase.from('User').select('*').eq('id', id);
-  const { data: me } = await supabase.auth.getUser();
+  const supabase = await createClient();
+  const [{ data: user }, { data: me }] = await Promise.all([
+    supabase.from('User').select('*').eq('id', id),
+    supabase.auth.getUser(),
+  ]);
 
   return (
     <AuthContainer title="게시글 작성">
