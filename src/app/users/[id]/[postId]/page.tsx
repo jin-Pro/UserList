@@ -8,7 +8,7 @@ import formatDateToYYMMDDHHMM from 'src/util/formatTime';
 export default async function PostDetailPage({
   params,
 }: {
-  params: { id: string; postId: string };
+  params: Promise<{ id: string; postId: string }>;
 }) {
   const { id, postId } = await params;
 

@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import Header from '@component/Header';
+import React from 'react';
 
 export const metadata = {
   title: 'Review For Me',

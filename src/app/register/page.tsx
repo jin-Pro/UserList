@@ -12,14 +12,21 @@ export default function RegisterPage() {
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
+    name: '',
   });
 
   const handleRegister = async () => {
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp(loginInfo);
-    const { error: err } = await supabase.from('User').insert([loginInfo]);
-    if (error) {
-      alert(error.message);
+    const { data, error } = await supabase.auth.signUp(loginInfo);
+    const { error: err } = await supabase.from('User').insert([
+      {
+        id: data.user.id,
+        email: loginInfo.email,
+        name: loginInfo.name,
+      },
+    ]);
+    if (error || err) {
+      alert((error || err).message);
     } else {
       alert('회원가입 성공! 이메일 인증을 확인해주세요.');
       router.push('/login');
@@ -45,6 +52,15 @@ export default function RegisterPage() {
             setLoginInfo((prev) => ({ ...prev, password: e.target.value }))
           }
           placeholder="비밀번호"
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="name"
+          value={loginInfo.name}
+          onChange={(e) =>
+            setLoginInfo((prev) => ({ ...prev, name: e.target.value }))
+          }
+          placeholder="이름"
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button

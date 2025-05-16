@@ -12,6 +12,9 @@ const nextConfig = {
     serverActions: true,
   },
   middleware: true,
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
 module.exports = nextConfig;

@@ -1,4 +1,4 @@
-// components/AuthContainer.tsx
+import React from 'react';
 export default function AuthContainer({
   title,
   children,

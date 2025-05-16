@@ -5,7 +5,7 @@ import PostForm from './Component/PostForm';
 export default async function WritePage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
 
